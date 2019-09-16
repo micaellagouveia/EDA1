@@ -1,0 +1,98 @@
+Lista 3 - EDA1  - Micaella Lorraine Gouveia de Lima - 170111288
+
+1) 
+• ptr+1 : 0x7ffd3e9416e4
+Retorna o endereço de memória do vetor na posição 1.
+• (*ptr)+1 : 2
+Retorna o valor que está alocado na posição 0 do vetor, acrescentando mais uma posição, ou seja, posição 1.
+• *(ptr+1) : 2
+Retorna o valor que está alocado na posição 1 do vetor.
+• *(ptr+10) : 548259888
+Retorna o valor que está alocado na posição 10 do vetor. O vetor aloca apenas 5 posições, então na posição 10, retorna lixo de memória.
+
+4)
+• vetor = vetor + 2;
+Inválido, pois estamos lidando com o endereço de memória de vetor, e não há como incrementar o valor do endereço sem atribuir esse valor a um outro ponteiro.
+• vetor++;
+Inválido, pois estamos lidando com o endereço de memória de vetor, e não há como incrementar o valor do endereço sem atribuir esse valor a um outro ponteiro.
+• vetor = ponteiro;
+Válido, por ser dois ponteiros, estamos apenas atribuindo o endereço de memória de ponteiro para o vetor.
+• ponteiro = vetor;
+Válido, por ser dois ponteiros, estamos apenas atribuindo o endereço de memória de vetor para o ponteiro.
+• ponteiro = vetor + 2;
+Válido, por ser dois ponteiros, estamos atribuindo o endereço de memória de vetor, mais duas posições, para ponteiro.
+
+5)
+A função imprime os caracteres de uma string (ou um vetor de char), dado um determinado tamanho n a ser imprimido.
+14)
+A parte da troca de inteiros está correta, mas a parte da troca de strings não, pois estamos acessando de forma incorreta o valor da string.
+Para ajustarmos, precisamos lembrar que uma string é um ponteiro que aponta para um vetor de char.
+Com isso em mente, nosso código deveria ser escrito dessa forma para poder funcionar:
+
+#include <stdio.h>
+void troca_int (int *x, int *y) {
+int tmp;
+tmp = *x;
+*x = *y;
+*y = tmp;
+}
+void troca_str (char **x, char **y) {
+char *tmp;
+tmp = *x;
+*x = *y;
+*y = tmp;
+}
+int main() {
+int a, b;
+char *s1, *s2;
+a = 3;
+b = 4;
+troca int (&a, &b);
+printf("a is %d\n", a);
+printf("b is %d\n", b);
+s1 = "Eu deveria aparecer depois";
+s2 = "Eu deveria aparecer primeiro";
+
+troca_str (&s1, &s2);
+printf("s1 is %s\n", s1);
+printf("s2 is %s\n", s2);
+return 0;
+}
+
+Note que por ser um ponteiro, devemos passar por referência o endereço de memória do ponteiro, e acessar o ponteiro do ponteiro para encontrarmos o valor correto.
+
+15)
+#include <stdio.h>
+#include <stdlib.h>
+
+char* concat(char *a, char *b)
+{
+    int i = 0, j = 0;
+    while(*(a+i)!='\0') {
+        ++i;
+    }
+    while(*(b+j)!='\0') {
+        *(a+i)=*(b+j);
+        j++; i++;
+    }
+    *(a+i)='\0';
+    return a;
+}
+int main () {
+    char *a;
+    char *b;
+
+    a = malloc(100*sizeof(char));
+    b = malloc(100*sizeof(char));
+
+    scanf("%s",a);
+    scanf("%s",b);    
+
+    printf("%s\n",concat(a,b));
+
+    free(a);
+    free(b);
+    return 0;
+}
+
+
