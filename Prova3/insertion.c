@@ -8,6 +8,12 @@ void troca(int *a, int *b)
     *b = tmp;
 }
 
+/*Funcionamento:
+1. Utilizamos o primeiro elemento do vetor como parâmetro.
+2. Enquanto o elemento seguinte for maior que o anterior, fazemos uma troca
+3. Acaba quando analisarmos até o ultimo elemnto do vetor.
+*/
+
 void insertionSort(int *v, int n)
 {
 

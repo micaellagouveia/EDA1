@@ -19,23 +19,16 @@ void ord_contagem(int *v, int n, int a, int b)
             aux[i]--;
         }
     }
-
     free(aux);
 }
 
 int main()
 {
 
-    int *v = malloc(5 * sizeof(int));
-
-    v[0] = 3;
-    v[1] = 5;
-    v[2] = 1;
-    v[3] = 2;
-    v[4] = 4;
+    int v[6] = {7, 3, 2, 4, 4, 0};
 
     printf("Vetor Inicial: \n");
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 6; i++)
     {
         printf("%d ", v[i]);
     }
@@ -43,15 +36,13 @@ int main()
 
     printf("Vetor Ordenado: \n");
 
-    ord_contagem(v, 5, 0, 5);
+    ord_contagem(v, 6, 0, 7);
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 6; i++)
     {
         printf("%d ", v[i]);
     }
     printf("\n");
-
-    free(v);
 
     return 0;
 }
